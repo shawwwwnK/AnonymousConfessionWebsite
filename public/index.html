@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Final Project</title>
+
+    <!-- This line provides automatic page and style reloading when files change -->
+    <script type="module" src="/lib/client/updater.js"></script>
+    <link rel="stylesheet" href="css/index.css">
+    <script type="module" src="js/index.js"></script>
+  </head>
+  <body>
+    <header>
+      <div class="widthContainer">
+        <h1 class="brand">Anonymous Confession App</h1>
+        <div id="loginDiv">
+          <p id="loginPrompt" class="prompt">To post, please log in: </p>
+          <button type="button" id="guestLogin">Login as a guest</button>
+          <button type="button" id="googleLogin">Login with Google</button>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <div class="widthContainer">
+        <section id="filterPanel">
+          <h2>What confessions do you want to see?</h2>
+          <div id="feedOrder">
+            <button type="button" id="latest">Latest</button>
+            <button type="button" id="mostPopular">Most Popular</button>
+          </div>
+
+          <div id="keyWordRanking" class="ranking">
+            <h3 class="rankingHeader">Most popular key words</h3>
+          </div>
+
+          <div id="emotionRanking" class="ranking">
+            <h3 class="rankingHeader">Most popular emotions</h3>
+          </div>
+
+        </section>
+
+        <section id="feedPanel">
+          <h2>Confessions in the community:</h2>
+          <div id="templatePost" class="post">
+            <h3 class="postHeader">[TEMPLATE]</h3>
+            <span class="time"></span>
+            <p class="postBody">[template]</p>
+            <div id="reactButtons">
+              <button class="heart">
+                <img src="icons/heart_unfull.svg" alt="Like">
+                <img src="icons/heart_full.svg" alt="Liked">
+                <span id="likeCount">0</span>
+              </button>
+              <button class="comment">
+                <img src="icons/comment.svg" alt="Comment">
+                <span id="commentCount">0</span>
+              </button>
+            </div>
+
+            <form id="postForm" class="post">
+              <textarea id="postHeaderInput" class="postHeader edit">Make a  header of your confession here.</textarea>
+              <textarea id="postBodyInput" class="postBody edit">Write your confession here.</textarea>
+              <button type="submit" id="postButton">Post</button>
+            </form>
+          </div>
+
+        </section>
+
+        <section id="commentPanel">
+          <h2>Comments</h2>
+          <form id="commentForm" class="comment">
+            <textarea id="commentInput" class="commentBody edit">What do you want to say about this confession?</textarea>
+            <button type="submit" id="commentButton">Comment</button>
+          </form>
+          <div id="templateComment" class="comment">
+            <p class="commentBody">[template]</p>
+            <span class="time"></span>
+          </div>
+
+        </section>
+      </div>
+    </main>
+
+
+  </body>
+</html>

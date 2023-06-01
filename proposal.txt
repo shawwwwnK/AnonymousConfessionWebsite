@@ -1,0 +1,37 @@
+CS193X Final Project Proposal
+=============================
+
+Project Title: An Anonymous Confession Website
+Your Name: Shawn Kang
+Your SUNetID: kangzx
+
+Description
+-----------
+A website where people can anonymously post a message and comment on other people's messages.
+Feature list:
+- Post messages
+- Comment under messages
+- Classify messages (using keywords) and display based on selected filter
+- Evaluate messages' sentiment (using external API) and have appearance changes
+(- User Login so users can track their messages)
+
+
+Milestone(s)
+------------
+Milestone 1: creating the basic framework: HTML, CSS layout, basic JS classes for app, message, comment, etc.
+Milestone 2: More styling and user interactions
+(Milestone due date)
+Milestone 3: Add the classification and sentiment analysis features
+(Milestone 4: Add the login feature)
+
+External libraries and code
+---------------------------
+I'll try to use an NLP package to do sentiment analysis, such as TextBlob or Pattern. They are python libraries.
+
+Collaboration and resources
+---------------------------
+None.
+
+Anything else?
+-------------
+None.
