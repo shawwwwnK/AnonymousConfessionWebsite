@@ -24,7 +24,7 @@
     <main id="main">
       <div class="widthContainer">
         <section id="filterPanel">
-          <h2>What confessions do you want to see?</h2>
+          <h2>Browse confessions by:</h2>
           <div id="feedOrder">
             <button type="button" id="latest">Latest</button>
             <button type="button" id="mostPopular">Most Popular</button>
@@ -44,38 +44,44 @@
           <h2>Confessions in the community:</h2>
           <div id="templatePost" class="post">
             <h3 class="postHeader">[TEMPLATE]</h3>
-            <span class="time"></span>
+            <span class="time">2023/06/01 12:31PM</span>
             <p class="postBody">[template]</p>
             <div id="reactButtons">
-              <button class="heart">
-                <img src="icons/heart_unfull.svg" alt="Like">
-                <img src="icons/heart_full.svg" alt="Liked">
+              <button class="reactButton">
+                <div id="icon">
+                  <img src="icons/heart_unfull.svg" alt="Like">
+                  <img src="icons/heart_full.svg" alt="Liked" class="hidden">
+                </div>
                 <span id="likeCount">0</span>
               </button>
-              <button class="comment">
-                <img src="icons/comment.svg" alt="Comment">
+              <button class="reactButton">
+                <div id="icon">
+                  <img src="icons/comment.svg" alt="Comment">
+                </div>
                 <span id="commentCount">0</span>
               </button>
             </div>
-
-            <form id="postForm" class="post">
-              <textarea id="postHeaderInput" class="postHeader edit">Make a  header of your confession here.</textarea>
-              <textarea id="postBodyInput" class="postBody edit">Write your confession here.</textarea>
-              <button type="submit" id="postButton">Post</button>
-            </form>
           </div>
+
+          <form id="postForm" class="post hidden">
+            <textarea id="postHeaderInput" class="postHeader edit" placeholder="Make a  header of your confession here"></textarea>
+            <textarea id="postBodyInput" class="postBody edit" placeholder="Write your confession here."></textarea>
+            <button type="submit" id="postButton">Post</button>
+          </form>
+
+          <div id="feed"></div>
 
         </section>
 
         <section id="commentPanel">
           <h2>Comments</h2>
           <form id="commentForm" class="comment">
-            <textarea id="commentInput" class="commentBody edit">What do you want to say about this confession?</textarea>
+            <textarea id="commentInput" class="commentBody edit" placeholder="What do you want to say about this confession?"></textarea>
             <button type="submit" id="commentButton">Comment</button>
           </form>
           <div id="templateComment" class="comment">
             <p class="commentBody">[template]</p>
-            <span class="time"></span>
+            <span class="time">2023/06/02 03:52PM</span>
           </div>
 
         </section>

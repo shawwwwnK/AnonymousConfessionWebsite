@@ -21,6 +21,8 @@ h1 {
 
 h2 {
     font-size: medium;
+    margin-bottom: 0.1rem;
+    white-space: nowrap;
 }
 
 h3 {
@@ -42,8 +44,7 @@ button:hover {
     background-color: #1d7fcf;
 }
 
-input,
-textarea {
+input, textarea {
     background-color: #e6ecf0;
     border: none;
     border-radius: 0.5rem;
@@ -60,4 +61,18 @@ input:focus,
 textarea:focus {
     background-color: white;
     border: 1px solid #ccd6dd;
+}
+
+.hidden {
+    display: none;
+}
+
+.edit{
+    resize: none;
+}
+
+.time{
+    font-size: 0.8rem;
+    margin: 0;
+    color: gray;
 }

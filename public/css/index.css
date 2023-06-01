@@ -1,1 +1,235 @@
 @import "./global.css";
+
+.widthContainer {
+    flex-grow: 1;
+    max-width: 1280px;
+}
+
+
+/***** Header *****/
+
+.brand {
+    color: #3b5998;
+    font-weight: bold;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    background-color: white;
+    border-bottom: 1px solid #ccd6dd;
+    padding: 0.5rem 0;
+}
+
+header .widthContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    font-weight: 600;
+}
+
+#loginDiv {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/**** Main ****/
+#main {
+    display: flex;
+    justify-content: center;
+    padding: 0.5rem 0;
+    margin: 0 5rem;
+    animation: fadein 1s;
+}
+
+#main.hidden {
+    display: none;
+}
+
+#main .widthContainer {
+    display: flex;
+}
+
+/**** Filter Panel ****/
+
+#filterPanel {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 0.5rem;
+    padding: 0 1rem;
+    background-color: lightpink;
+}
+
+#feedOrder {
+    display: flex;
+    margin: 0;
+}
+
+#filterPanel button{
+    margin: 0 0.4em;
+    white-space: nowrap;
+    font-size: 0.8em;
+}
+
+#fiterPanel button:active {
+    background-color: #1d7fcf;
+}
+
+/**** Feed Panel ****/
+#feedPanel {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 0 1rem;
+    background-color: lightblue;
+    width: 60%;
+}
+
+#feed {
+    display: flex;
+    flex-direction: column;
+}
+
+#postForm{
+    margin-top: 0;
+}
+
+#postForm .edit {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+#postForm #postHeaderInput{
+    height: 2rem;
+    overflow: auto;
+    white-space: nowrap;
+    padding: 0 0.5rem;
+}
+
+#postForm #postBodyInput{
+    height: 6rem;
+}
+
+#postForm button {
+    margin-top: 0.5rem;
+    height: 1.5rem;
+    align-items: center;
+    display: flex;
+    align-self: flex-end;
+}
+
+#postForm textarea {
+    /* min-height: 4em; */
+    width: 100%;
+}
+
+.post {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: #d8ecf3;
+    margin: 1rem 0;
+    border-radius: 0.25rem;
+    padding: 1rem;
+    animation: fadein 0.5s;
+}
+
+.post .postHeader{
+    margin-top: 0.2rem;
+    font-size: 1.1rem;;
+}
+
+.post .postHeader{
+    margin-bottom: 0;
+}
+
+.post .postBody{
+    margin-top: 0.2rem;
+    margin-bottom: 0;
+}
+
+#reactButtons{
+    display: flex;
+    align-self: flex-end;
+}
+
+.reactButton{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 0.2rem;
+    width: 3rem;
+    height: 1.5rem;
+}
+
+.reactButton #icon{
+    flex: 1;
+    margin-left: 0;
+    margin-right: 0.2rem;
+}
+
+.reactButton #icon img{
+    margin: 0;
+    width: 0.8rem;
+    height: 0.8rem;
+    object-fit: contain;
+}
+
+.reactButton span{
+    flex: 1;
+    font-weight: lighter;
+}
+
+.reactButton #icon .hidden{
+    display: none;
+}
+
+/**** Comment Panel ****/
+#commentPanel {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 0 1rem;
+    background-color: lightpink;
+    width: 30%;
+}
+
+#commentForm{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin: 1rem 0;
+}
+
+#commentForm .edit{
+    width: 100%;
+    background-color: #fff1f3;
+}
+
+#commentForm button{
+    margin-top: 0.5rem;
+    height: 1.5rem;
+    align-items: center;
+    display: flex;
+    align-self: flex-end;
+}
+
+.comment{
+    background-color: #ffdde2;
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 0.25rem;
+    padding: 0.5rem 1rem;
+    animation: fadein 0.5s;
+}
+
+.comment .commentBody{
+    margin-top: 0.2rem;
+    margin-bottom: 0;
+}
