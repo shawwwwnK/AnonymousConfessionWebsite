@@ -1,4 +1,21 @@
-// TODO: If you need to initialize your database with some documents, uncomment/adjust these lines and add insert statements.
+db = connect("anonymous_confession_website");
+db.dropDatabase();
+db.users.insertOne({ id: "mchang", name: "Flower"});
+db.users.insertOne({ id: "swe123", name: "Peach"});
+db.posts.insertOne({ userId: "mchang", time: new Date(), text: "Welcome to the website" });
 
-//db = connect(...);
-//db.dropDatabase();
+var mchangPost = db.posts.findOne({ userId: "mchang" });
+var mchangPostId = mchangPost._id;
+
+db.comments.insertOne({
+  postId: mchangPostId,
+  userId: "swe123",
+  time: new Date(),
+  text: "Great post! Keep it up!",
+});
+
+db.likes.insertOne({
+  postId: mchangPostId,
+  userId: "swer123",
+  time: new Date()
+});
