@@ -1,8 +1,9 @@
 import apiRequest, { HTTPError } from "./apirequest.js";
 import App from "./app.js";
 
-const testApp = () => {
-
+const testApp = async () => {
+    let res = await apiRequest("GET", "/");
+    console.log(res.message);
 };
 window.testApp = testApp;
 

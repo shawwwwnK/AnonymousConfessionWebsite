@@ -2,7 +2,7 @@ db = connect("anonymous_confession_website");
 db.dropDatabase();
 db.users.insertOne({ id: "mchang", name: "Flower"});
 db.users.insertOne({ id: "swe123", name: "Peach"});
-db.posts.insertOne({ userId: "mchang", time: new Date(), text: "Welcome to the website" });
+db.posts.insertOne({ userId: "mchang", time: new Date(), header: "My Post!", body: "Welcome to the website" });
 
 var mchangPost = db.posts.findOne({ userId: "mchang" });
 var mchangPostId = mchangPost._id;

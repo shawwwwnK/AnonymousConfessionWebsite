@@ -1,4 +1,4 @@
-API_URL = "/api";
+let API_URL = "/api";
 
 /* Subclass of Error for representing HTTP errors returned from the API.
    Exposes a status (the HTTP response status code) and message (a user-facing message).
