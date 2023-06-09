@@ -7,24 +7,28 @@ Your SUNetID: kangzx
 
 Overview
 --------
-<TODO: Let us know how things are going. What have you explored, looked into, worked on, and tried so far? What do you have left to do? Are you running into any particular difficulties or blockers?>
+I have finished the static frontend (HTML and CSS layout and styling). I will need to start backend soon.
 
 Project Changes
 ---------------
-<TODO: If you are planning to change something about your project (scope, features, etc.) from your proposal, please let us know what changes you're planning to make.>
+I don't have plans to change my project from my proposal.
 
 Implementation Details
 ----------------------
-<TODO: Describe how you will implement (or have implemented) a specific feature or part of the project. Include specific details about the frontend (e.g. what classes you'll have and how the user interface will work) and backend (e.g. what API endpoints you'll use and how you'll store the data). As with the proposal, this can change later; we just want to make sure you've thought through some of these details.>
+I have implemented the frontend with the header (with website name and login buttons), filter panel (with order buttons
+and ranking of keywords and emotions which will be added dynamically in JS), feed panel (with a template confession post
+and a post form), and a comments panel (with a comment form and template comment).
+For backend, it will be similar to project 3 while there will be more processing after a POST action (for the backend to
+extract keywords). There will also be more GET APIs to achieve the filtering.
 
 External libraries and code
 ---------------------------
-<TODO: Identify any external libraries or code you are using or plan to use, and describe how it fits into your project. Please include everything even if you already listed it in your proposal.>
+I'll try to use an NLP package to do sentiment analysis, such as TextBlob or Pattern. They are python libraries.
 
 Collaboration and resources
 ---------------------------
-<TODO: Identify any sources you have consulted or plan to consult, except for code listed above. Include those you listed previously in your proposal.>
+I consulted assignment 2 and 3 starter CSS and HTML and code.
 
 Anything else?
 --------------
-<TODO: Anything else you'd like the teaching staff to know?>
+Not at the moment.
