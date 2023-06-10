@@ -11,11 +11,14 @@ export default class App {
 
         this._onGuestLogin = this._onGuestLogin.bind(this);
         this._onGoogleLogin = this._onGoogleLogin.bind(this);
+        this._onPost = this._onPost.bind(this);
 
         this._guestLoginButton = document.querySelector("#guestLogin");
         this._guestLoginButton.addEventListener("click", this._onGuestLogin);
         this._googleLoginButton = document.querySelector("#googleLogin");
         this._guestLoginButton.addEventListener("click", this._onGoogleLogin);
+        this._postForm = document.querySelector("#postForm");
+        this._postForm.addEventListener("submit", this._onPost);
 
         this._loadFeed();
     }
@@ -58,6 +61,20 @@ export default class App {
     }
 
     async _onGoogleLogin() {
+
+    }
+
+    async _onPost(event){
+        event.preventDefault();
+        let header = this._postForm.querySelector("#postHeaderInput").value;
+        let body = this._postForm.querySelector("#postBodyInput").value;
+        await apiRequest("POST", "/post/" + this._user.id, {
+            header: header,
+            body: body
+        })
+        await this._loadFeed();
+        this._postForm.querySelector("#postHeaderInput").value = "";
+        this._postForm.querySelector("#postBodyInput").value = "";
 
     }
 

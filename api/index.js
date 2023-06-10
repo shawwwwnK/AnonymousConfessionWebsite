@@ -130,6 +130,32 @@ api.post("/like", async (req, res) => {
     }
 });
 
+api.post("/post/:userId", async (req, res) => {
+    let userId = req.params.userId;
+    // Handling Errors
+    let user = await users.findOne({id: userId});
+    if (user === null){
+        res.status(404).json({error: `No user with ID ${userId}`});
+        return;
+    }
+
+    let header = req.body.header;
+    let body = req.body.body;
+    if (header === undefined || header === ""){
+        res.status(400).json({error: "Missing header"});
+        return;
+    }
+
+    // Post
+    await posts.insertOne({
+        userId: userId,
+        time: new Date(),
+        header: header,
+        body: body
+    })
+    res.status(200).json({success: true});
+});
+
 
 api.all("/*", (req, res) => {
         res.status(404).json({ error: `Endpoint not found: ${req.method} ${req.url}` });

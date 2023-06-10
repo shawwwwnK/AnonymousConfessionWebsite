@@ -44,6 +44,7 @@ export default class Post {
     async _onLike() {
         if (this.user === null){
             alert("Please log in to like a post.");
+            return;
         }
 
         if (!this.ifLiked){
@@ -55,6 +56,7 @@ export default class Post {
             this.post.querySelector("#fullHeart").classList.remove("hidden");
             this.likeCount += 1;
             this.post.querySelector("#likeCount").textContent = this.likeCount;
+            this.ifLiked = true;
         }
 
 
