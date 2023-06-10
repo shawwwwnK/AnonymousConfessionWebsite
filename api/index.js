@@ -49,6 +49,29 @@ api.get("/feed", async (req, res) => {
 });
 
 
+api.post("/users", async (req, res) => {
+    let id = req.body.id;
+  
+    // Handling errors
+    if (id === undefined || id === ""){
+        res.status(400).json({error: "Missing id"});
+        return;
+    }
+
+    // User has logged in before
+    let oldUser = await users.findOne({id: id});
+    if (oldUser !== null){
+        res.status(200).json(newUser);
+    }
+
+    // Create user
+    else{
+        let newUser = { id: id };
+        res.status(200).json(newUser);
+        await users.insertOne(newUser);
+    }
+});
+
 
 api.all("/*", (req, res) => {
         res.status(404).json({ error: `Endpoint not found: ${req.method} ${req.url}` });

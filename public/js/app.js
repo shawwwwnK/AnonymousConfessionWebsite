@@ -1,6 +1,7 @@
 import apiRequest from "./apirequest.js";
 import Filter from "./filter.js";
 import Post from "./post.js";
+import User from "./user.js";
 
 export default class App {
     constructor() {
@@ -43,7 +44,9 @@ export default class App {
 
     /* handlers */
     async _onGuestLogin() {
-
+        this._user = new User();
+        this._user.logIn();
+        document.querySelector("#postForm").classList.remove("hidden");
     }
 
     async _onGoogleLogin() {

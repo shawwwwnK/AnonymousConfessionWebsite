@@ -1,5 +1,5 @@
 export default class Post {
-    constructor(data, postElm) {
+    constructor(data, postElm, viewUser) {
         this.time = data.time;
         this.header = data.header;
         this.body = data.body;
