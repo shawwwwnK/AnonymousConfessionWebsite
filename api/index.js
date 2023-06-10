@@ -35,9 +35,10 @@ api.get("/feed", async (req, res) => {
     let feed = await posts.find().toArray();
     let resFeed = [];
     for (let post of feed){
-        let likeCount = await likes.countDocuments({postId: post._id});
-        let commentCount = await comments.countDocuments({postId: post._id});
+        let likeCount = await likes.countDocuments({postId: post._id.toString()});
+        let commentCount = await comments.countDocuments({postId: post._id.toString()});
         resFeed.push({
+            id: post._id,
             time: post.time,
             header: post.header,
             body: post.body,
@@ -61,7 +62,7 @@ api.post("/users", async (req, res) => {
     // User has logged in before
     let oldUser = await users.findOne({id: id});
     if (oldUser !== null){
-        res.status(200).json(newUser);
+        res.status(200).json(oldUser);
     }
 
     // Create user
@@ -69,6 +70,63 @@ api.post("/users", async (req, res) => {
         let newUser = { id: id };
         res.status(200).json(newUser);
         await users.insertOne(newUser);
+    }
+});
+
+api.get("/like/:userId/:postId", async (req, res) => {
+    let userId = req.params.userId;
+    let postId = req.params.postId;
+  
+    // Handling errors
+    if (userId === undefined || userId === ""){
+        res.status(400).json({error: "Missing user id"});
+        return;
+    }
+
+    if (postId === undefined || postId === ""){
+        res.status(400).json({error: "Missing post id"});
+        return;
+    }
+
+    let oldLike = await likes.findOne({userId: userId, postId: postId});
+    if (oldLike !== null){
+        res.status(200).json({ifLiked: true});
+    }
+    else{
+        res.status(200).json({ifLiked: false});
+    }
+});
+
+api.post("/like", async (req, res) => {
+    let userId = req.body.userId;
+    let postId = req.body.postId;
+  
+    // Handling errors
+    if (userId === undefined || userId === ""){
+        res.status(400).json({error: "Missing user id"});
+        return;
+    }
+
+    if (postId === undefined || postId === ""){
+        res.status(400).json({error: "Missing post id"});
+        return;
+    }
+
+    // User has liked the post before
+    let oldLike = await likes.findOne({userId: userId, postId: postId});
+    if (oldLike !== null){
+        res.status(200).json({ifLiked: true});
+    }
+
+    // Like
+    else{
+        let newLike = {
+            userId: userId,
+            postId: postId,
+            time: new Date()
+        };
+        res.status(200).json({ifLiked: false});
+        await likes.insertOne(newLike);
     }
 });
 

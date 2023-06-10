@@ -24,9 +24,10 @@ export default class App {
     async _loadFeed(){
         document.querySelector("#feed").textContent = "";
         let data = await apiRequest("GET", "/feed");
+        this._posts = [];
         for (let postData of data.posts) {
             let elem = document.querySelector("#templatePost").cloneNode(true);
-            let post = new Post(postData, elem);
+            let post = new Post(postData, elem, this._user);
 
             elem.classList.remove("hidden");
             elem.id = "";
@@ -45,8 +46,12 @@ export default class App {
     /* handlers */
     async _onGuestLogin() {
         this._user = new User();
-        this._user.logIn();
+        await this._user.logIn();
         document.querySelector("#postForm").classList.remove("hidden");
+        for (let post of this._posts){
+            post.updateUser(this._user);
+            await post.updateLike();
+        }
     }
 
     async _onGoogleLogin() {

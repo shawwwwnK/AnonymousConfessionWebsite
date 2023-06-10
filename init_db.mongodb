@@ -8,14 +8,14 @@ var mchangPost = db.posts.findOne({ userId: "mchang" });
 var mchangPostId = mchangPost._id;
 
 db.comments.insertOne({
-  postId: mchangPostId,
+  postId: mchangPostId.toString(),
   userId: "swe123",
   time: new Date(),
   text: "Great post! Keep it up!",
 });
 
 db.likes.insertOne({
-  postId: mchangPostId,
+  postId: mchangPostId.toString(),
   userId: "swer123",
   time: new Date()
 });

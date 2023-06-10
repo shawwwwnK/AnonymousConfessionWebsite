@@ -13,6 +13,7 @@ export default class User {
             throw new Error(error);
         }
         let ipAddressHashed = await this.getHash(ipAddress);
+        this.id = ipAddressHashed;
         await apiRequest("POST", "/users", {id: ipAddressHashed});
     }
 
