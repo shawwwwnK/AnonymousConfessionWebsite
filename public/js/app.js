@@ -52,6 +52,9 @@ export default class App {
             post.updateUser(this._user);
             await post.updateLike();
         }
+        this._guestLoginButton.classList.add("hidden");
+        this._googleLoginButton.classList.add("hidden");
+        document.querySelector("#loginPrompt").classList.add("hidden");
     }
 
     async _onGoogleLogin() {
