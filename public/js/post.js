@@ -63,6 +63,20 @@ export default class Post {
     }
 
     async _onComment() {
+        if (this.user === null){
+            alert("Please log in to see comments.");
+            return;
+        }
+
+        document.querySelector("#postCopy").textContent = "";
+        document.querySelector("#comments").textContent = "";
+
+        document.querySelector("#commentPrompt").classList.add("hidden");
+        document.querySelector("#commentForm").classList.remove("hidden");
+
+        let postCopy = this.post.cloneNode(true);
+        postCopy.removeChild(postCopy.querySelector("#reactButtons"));
+        document.querySelector("#postCopy").appendChild(postCopy);
 
     }
 }

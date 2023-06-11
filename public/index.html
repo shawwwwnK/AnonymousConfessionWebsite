@@ -75,7 +75,9 @@
 
         <section id="commentPanel">
           <h2>Comments</h2>
-          <form id="commentForm" class="comment">
+          <h3 id="commentPrompt">Select a confession for comments</h3>
+          <div id="postCopy"></div>
+          <form id="commentForm" class="comment hidden">
             <textarea id="commentInput" class="commentBody edit" placeholder="What do you want to say about this confession?"></textarea>
             <button type="submit" id="commentButton">Comment</button>
           </form>
@@ -83,6 +85,7 @@
             <p class="commentBody">[template]</p>
             <span class="time">2023/06/02 03:52PM</span>
           </div>
+          <div id="comments"></div>
 
         </section>
       </div>
