@@ -156,6 +156,26 @@ api.post("/post/:userId", async (req, res) => {
     res.status(200).json({success: true});
 });
 
+api.get("/comment/:postId", async (req, res) => {
+    let postId = req.params.postId;
+
+    if (postId === undefined || postId === ""){
+        res.status(400).json({error: "Missing post id"});
+        return;
+    }
+
+    let thisComments = await comments.find({postId: postId}).toArray();
+    thisComments.sort((a, b) => b.time - a.time);
+    let resComments = [];
+    for (let comment of thisComments){
+        resComments.push({
+            time: comment.time,
+            text: comment.text
+        });
+    }
+    res.status(200).json({comments: resComments});
+});
+
 
 api.all("/*", (req, res) => {
         res.status(404).json({ error: `Endpoint not found: ${req.method} ${req.url}` });

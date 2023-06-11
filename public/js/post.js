@@ -10,6 +10,7 @@ export default class Post {
         this.commentCount = data.commentCount;
         this.post = postElm;   // DOM element
         this.user = viewUser;   // User object
+        this.comments = [];
 
         this.ifLiked = false;
 
@@ -70,6 +71,7 @@ export default class Post {
 
         document.querySelector("#postCopy").textContent = "";
         document.querySelector("#comments").textContent = "";
+        this.comments = [];
 
         document.querySelector("#commentPrompt").classList.add("hidden");
         document.querySelector("#commentForm").classList.remove("hidden");
@@ -77,6 +79,21 @@ export default class Post {
         let postCopy = this.post.cloneNode(true);
         postCopy.removeChild(postCopy.querySelector("#reactButtons"));
         document.querySelector("#postCopy").appendChild(postCopy);
+
+        let data = await apiRequest("GET", "/comment/" + this.id.toString());
+        let comments = data.comments;
+        for (let commentData of comments){
+            let elem = document.querySelector("#templateComment").cloneNode(true);
+            elem.classList.remove("hidden");
+            elem.id = "";
+
+            elem.querySelector(".commentBody").textContent = commentData.text;
+            elem.querySelector(".time").textContent = commentData.time.toLocaleString();
+
+            document.querySelector("#comments").append(elem);
+            this.comments.push(elem);
+        }
+
 
     }
 }
