@@ -176,6 +176,31 @@ api.get("/comment/:postId", async (req, res) => {
     res.status(200).json({comments: resComments});
 });
 
+api.post("/comment/:userId/:postId", async (req, res) => {
+    let userId = req.params.userId;
+    let postId = req.params.postId;
+    let text = req.body.text;
+  
+    // Handling errors
+    if (userId === undefined || userId === ""){
+        res.status(400).json({error: "Missing user id"});
+        return;
+    }
+
+    if (postId === undefined || postId === ""){
+        res.status(400).json({error: "Missing post id"});
+        return;
+    }
+
+    await comments.insertOne({
+        userId: userId,
+        postId: postId,
+        time: new Date(),
+        text: text
+    })
+    res.status(200).json({success: true});
+});
+
 
 api.all("/*", (req, res) => {
         res.status(404).json({ error: `Endpoint not found: ${req.method} ${req.url}` });

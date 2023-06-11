@@ -59,8 +59,6 @@ export default class Post {
             this.post.querySelector("#likeCount").textContent = this.likeCount;
             this.ifLiked = true;
         }
-
-
     }
 
     async _onComment() {
@@ -69,18 +67,22 @@ export default class Post {
             return;
         }
 
-        document.querySelector("#postCopy").textContent = "";
-        document.querySelector("#comments").textContent = "";
-        this.comments = [];
-
         document.querySelector("#commentPrompt").classList.add("hidden");
         document.querySelector("#commentForm").classList.remove("hidden");
 
         let postCopy = this.post.cloneNode(true);
+        postCopy.id = this.id.toString();
         postCopy.removeChild(postCopy.querySelector("#reactButtons"));
+        document.querySelector("#postCopy").textContent = "";
         document.querySelector("#postCopy").appendChild(postCopy);
 
-        let data = await apiRequest("GET", "/comment/" + this.id.toString());
+        Post.updateComments(this.id);
+    }
+
+    static async updateComments(postId){
+        document.querySelector("#comments").textContent = "";
+        
+        let data = await apiRequest("GET", "/comment/" + postId.toString());
         let comments = data.comments;
         for (let commentData of comments){
             let elem = document.querySelector("#templateComment").cloneNode(true);
@@ -91,9 +93,8 @@ export default class Post {
             elem.querySelector(".time").textContent = commentData.time.toLocaleString();
 
             document.querySelector("#comments").append(elem);
-            this.comments.push(elem);
         }
-
-
     }
+
+
 }

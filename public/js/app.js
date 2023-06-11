@@ -12,6 +12,7 @@ export default class App {
         this._onGuestLogin = this._onGuestLogin.bind(this);
         this._onGoogleLogin = this._onGoogleLogin.bind(this);
         this._onPost = this._onPost.bind(this);
+        this._onPostComment = this._onPostComment.bind(this);
 
         this._guestLoginButton = document.querySelector("#guestLogin");
         this._guestLoginButton.addEventListener("click", this._onGuestLogin);
@@ -19,6 +20,8 @@ export default class App {
         this._guestLoginButton.addEventListener("click", this._onGoogleLogin);
         this._postForm = document.querySelector("#postForm");
         this._postForm.addEventListener("submit", this._onPost);
+        this._postCommentForm = document.querySelector("#commentForm");
+        this._postCommentForm.addEventListener("submit", this._onPostComment);
 
         this._loadFeed();
     }
@@ -75,7 +78,18 @@ export default class App {
         await this._loadFeed();
         this._postForm.querySelector("#postHeaderInput").value = "";
         this._postForm.querySelector("#postBodyInput").value = "";
+    }
 
+    async _onPostComment(event){
+        event.preventDefault();
+        let text = document.querySelector("#commentInput").value;
+        let postId = document.querySelector("#postCopy").firstChild.id;
+        await apiRequest("POST", "/comment/" + this._user.id + "/" + postId, {
+            text: text
+        })
+        Post.updateComments(postId);
+        document.querySelector("#commentInput").value = "";
+        this._loadFeed();
     }
 
 }
