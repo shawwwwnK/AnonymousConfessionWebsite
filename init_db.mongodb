@@ -1,3 +1,98 @@
+let init_posts = 
+    {
+        "confessions": [
+            {
+                "header": "Crush Confession",
+                "body": "I can't keep it a secret any longer. I have a massive crush on my best friend, and it's driving me crazy. Every time we hang out, my heart skips a beat, and I can't help but imagine what it would be like to be more than just friends. It's time to confess and see if there's a chance for something more.",
+                "keywords": [
+                    "crush"
+                ]
+            },
+            {
+                "header": "Secret Crush Revealed",
+                "body": "There's something I've been hiding for far too long—a secret crush on a co-worker. Every day at work, I find myself stealing glances, hoping they don't notice. It's become unbearable, and I can't concentrate on anything else. I need to confess my feelings and see if there's a possibility of turning this secret crush into something real.",
+                "keywords": [
+                    "crush",
+                    "secret"
+                ]
+            },
+            {
+                "header": "School Crush Woes",
+                "body": "High school can be such a complicated time, especially when you have a crush on someone who doesn't even know you exist. I've admired this person from afar, daydreaming about the possibilities. But I'm tired of keeping this school crush a secret. It's time to gather the courage to talk to them and reveal my feelings, even if it means risking rejection.",
+                "keywords": [
+                    "crush",
+                    "school"
+                ]
+            },
+            {
+                "header": "Workplace Secrets and Crushes",
+                "body": "I never thought I would find myself in this situation, but I have a secret crush on a colleague. It's difficult to navigate the professional setting, wondering if my feelings are reciprocated or if it's just wishful thinking. I need to come clean about my emotions, but I'm terrified of jeopardizing our work relationship. Confessing this crush is a risk I must take.",
+                "keywords": [
+                    "crush",
+                    "secret",
+                    "work"
+                ]
+            },
+            {
+                "header": "Unrequited School Crush",
+                "body": "Throughout my entire school life, there has been one person who has captured my heart. I've silently cherished this crush, hoping one day they would notice me. But it's become clear that it's an unrequited love, and I can no longer keep this secret to myself. It's time to let go and move on from this school crush, even if it breaks my heart.",
+                "keywords": [
+                    "crush",
+                    "school"
+                ]
+            },
+            {
+                "header": "Crush Confession at Work",
+                "body": "The office can be a place filled with excitement and stress, but my biggest challenge is keeping this crush a secret. Every interaction with my co-worker leaves me feeling a mixture of joy and anxiety. I can't let this drag on any longer. I must gather the courage to confess my feelings and find out if there's a chance for something more.",
+                "keywords": [
+                    "crush",
+                    "work"
+                ]
+            },
+            {
+                "header": "Secret Passion for School",
+                "body": "Amidst the sea of textbooks and homework, I harbor a secret passion for school. It may sound strange, but the pursuit of knowledge and the thrill of learning have always excited me. While some dread attending classes, I can't help but feel a sense of joy whenever I step foot in the school. It's time to embrace and share this secret love for education.",
+                "keywords": [
+                    "secret",
+                    "school"
+                ]
+            },
+            {
+                "header": "Secret Talent at School",
+                "body": "I have a hidden talent that I've kept hidden from my friends and classmates at school. It's a skill I've honed over the years, but fear of judgment has prevented me from showcasing it. I long to share this secret talent with others, to receive their feedback and appreciation. It's time to break free from my self-imposed restrictions and let my abilities shine.",
+                "keywords": [
+                    "secret",
+                    "school"
+                ]
+            },
+            {
+                "header": "Work Struggles and Secrets",
+                "body": "My work life has been plagued with challenges and hidden secrets. The pressure to perform and succeed often makes me feel overwhelmed, but I've kept these struggles to myself. It's time to be honest and seek support from my colleagues and superiors. Sharing these work-related secrets is the first step toward finding a solution and reclaiming my peace of mind.",
+                "keywords": [
+                    "secret",
+                    "work"
+                ]
+            },
+            {
+                "header": "Secret Relationship Revelation",
+                "body": "For months, I've been concealing a secret relationship from my friends and family. We've kept it hidden due to various circumstances and fear of judgment. But it's getting harder to live this double life, and I yearn for the freedom to express my love openly. It's time to gather the courage and come clean about our secret relationship, regardless of the consequences.",
+                "keywords": [
+                    "secret",
+                    "relationship"
+                ]
+            },
+            {
+                "header": "Workplace Crush Dilemma",
+                "body": "Within the confines of the workplace, I've developed a crush on a colleague that has ignited a whirlwind of emotions. It's a secret I've guarded closely, unsure of the implications it may have on our professional dynamic. But the weight of this unspoken attraction is becoming unbearable. I must confront this workplace crush and find out if it's a shared sentiment or merely a figment of my imagination.",
+                "keywords": [
+                    "crush",
+                    "work"
+                ]
+            }
+        ]
+    }
+
+
 db = connect("anonymous_confession_website");
 db.dropDatabase();
 db.users.insertOne({ id: "mchang"});
@@ -19,3 +114,12 @@ db.likes.insertOne({
   userId: "swer123",
   time: new Date()
 });
+
+for (let post of init_posts.confessions){
+    db.posts.insertOne({
+        userId: "init",
+        time: new Date(),
+        header: post.header,
+        body: post.body
+    })
+}

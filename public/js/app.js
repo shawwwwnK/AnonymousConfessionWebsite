@@ -10,14 +10,11 @@ export default class App {
         this._posts = [];
 
         this._onGuestLogin = this._onGuestLogin.bind(this);
-        this._onGoogleLogin = this._onGoogleLogin.bind(this);
         this._onPost = this._onPost.bind(this);
         this._onPostComment = this._onPostComment.bind(this);
 
         this._guestLoginButton = document.querySelector("#guestLogin");
         this._guestLoginButton.addEventListener("click", this._onGuestLogin);
-        this._googleLoginButton = document.querySelector("#googleLogin");
-        this._guestLoginButton.addEventListener("click", this._onGoogleLogin);
         this._postForm = document.querySelector("#postForm");
         this._postForm.addEventListener("submit", this._onPost);
         this._postCommentForm = document.querySelector("#commentForm");
@@ -33,9 +30,10 @@ export default class App {
         let posts = data.posts;
         if (this._filter.order === Order.LATEST){
             posts.sort((a, b) => b.time - a.time);
+            posts.reverse();
         }
         else if (this._filter.order === Order.POPULAR){
-            posts.sort((a, b) => (b.likeCount + b.commentCount) - ((a.likeCount + a.commentCount)));
+            posts.sort((a, b) => ((b.likeCount + b.commentCount) - (a.likeCount + a.commentCount)));
         }
         
         this._posts = [];
@@ -67,12 +65,7 @@ export default class App {
             await post.updateLike();
         }
         this._guestLoginButton.classList.add("hidden");
-        this._googleLoginButton.classList.add("hidden");
         document.querySelector("#loginPrompt").classList.add("hidden");
-    }
-
-    async _onGoogleLogin() {
-
     }
 
     async _onPost(event){
