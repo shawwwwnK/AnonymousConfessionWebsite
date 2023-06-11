@@ -24,7 +24,7 @@ Features
 Collaboration and libraries
 ---------------------------
 - I used ChatGPT to generate the posts for my `init_db.mongodb` script. 
-- I used [ipify](https://www.ipify.org/)'s API to request the user's IP address.
+- I used Ipify's API (https://www.ipify.org/) to request the user's IP address.
 - I consulted the internet to implement hashing for the IP address.
 
 Anything else?
