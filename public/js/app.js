@@ -1,12 +1,12 @@
 import apiRequest from "./apirequest.js";
-import Filter from "./filter.js";
+import Filter, {Order} from "./filter.js";
 import Post from "./post.js";
 import User from "./user.js";
 
 export default class App {
     constructor() {
         this._user = null;
-        this._filter = new Filter();
+        this._filter = new Filter(this);
         this._posts = [];
 
         this._onGuestLogin = this._onGuestLogin.bind(this);
@@ -30,8 +30,16 @@ export default class App {
     async _loadFeed(){
         document.querySelector("#feed").textContent = "";
         let data = await apiRequest("GET", "/feed");
+        let posts = data.posts;
+        if (this._filter.order === Order.LATEST){
+            posts.sort((a, b) => b.time - a.time);
+        }
+        else if (this._filter.order === Order.POPULAR){
+            posts.sort((a, b) => (b.likeCount + b.commentCount) - ((a.likeCount + a.commentCount)));
+        }
+        
         this._posts = [];
-        for (let postData of data.posts) {
+        for (let postData of posts) {
             let elem = document.querySelector("#templatePost").cloneNode(true);
             let post = new Post(postData, elem, this._user);
 

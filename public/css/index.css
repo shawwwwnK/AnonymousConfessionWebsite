@@ -76,7 +76,7 @@ header h1 {
     font-size: 0.8em;
 }
 
-#fiterPanel button:active {
+#fiterPanel button, .activated {
     background-color: #1d7fcf;
 }
 
