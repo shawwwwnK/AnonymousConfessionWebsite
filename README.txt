@@ -1,28 +1,32 @@
 CS193X Final Project
 ====================
 
-Project Title: <TODO>
-Your Name: <TODO>
-Your SUNetID: <TODO: the part of your email before the @, not the number>
+Project Title: An Anonymous Confession Website
+Your Name: Shawn Kang
+Your SUNetID: kangzx
 
 Overview
 --------
-<TODO: A short description of your project and what it does.>
+This project is an anonymous confession website. Users can post their confessions anonymously, view all confessions that are posted, and like and comment on the posts.
 
 Running
 -------
-<TODO: In general, we should be able to `npm install` and `npm start` your project. If there is anything else we need to know about running your project, please let us know here.>
-
-Do we need to load data from init_db.mongodb? <TODO: Yes/No>
+Run `mongosh init_db.mongodb`, `npm install` and `npm start`.
 
 Features
 --------
-<TODO: This doesn't have to be a comprehensive list. But if there's anything we should definitely try or might miss, this is a good place to let us know about that.>
+- The user should be able to see all the posts ordered from latest to earliest (they may select that the posts ordered by popularity which is `likeCount + commentCount`).
+- The user should be able to log in. When they log in, the website will get the users IP address and generate a hash to submit to the database. 
+- After logging in, the user may make a post, like, or comment on a post.
+- A user (identified by the hashed IP address) can only like a post once. Once the user has liked the post, the heart icon will become full. Next time when the user logs in, the heart icon will still be full.
+- The like and comment count will be reflected immediately after the user comments or likes a post.
 
 Collaboration and libraries
 ---------------------------
-<TODO: Identify any sources you have consulted or libraries/external code you used. If your project overlaps with another project or coursework for another class, please describe the overlap and the parts specific to you/193X here.>
+- I used ChatGPT to generate the posts for my `init_db.mongodb` script. 
+- I used [ipify](https://www.ipify.org/)'s API to request the user's IP address.
+- I consulted the internet to implement hashing for the IP address.
 
 Anything else?
 -------------
-<TODO: Anything else you'd like the teaching staff to know? How was the course overall?>
+Amazing class! Fun projects!
