@@ -1,10 +1,12 @@
 import apiRequest from "./apirequest.js";
 
+/* A data model that represents a user. As of now mainly to handle hashed IP as user ID */
 export default class User {
     constructor(){
         this.id = null;
     }
 
+    /* Call to submit a hash of the user's IP address as the user ID */
     async logIn(){
         let ipAddress;
         try {
@@ -29,6 +31,7 @@ export default class User {
         }
     }
 
+    /* Helper function that creates a hash of the given string. Code is from an external source */
     async getHash(str){
         const encoder = new TextEncoder();
         const data = encoder.encode(str);

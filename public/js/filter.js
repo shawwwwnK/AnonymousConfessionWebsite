@@ -3,6 +3,7 @@ export const Order = {
     POPULAR: 1
 };
 
+/* Filter class that determines the order and filter of the feed */
 export default class Filter {
     constructor(app) {
         this.order = Order.LATEST;
@@ -18,6 +19,7 @@ export default class Filter {
         this.popularButton.addEventListener("click", this.onPopular);
     }
 
+    /* handlers */
     async onLatest(){
         this.order = Order.LATEST;
         if (!this.latestButton.classList.contains("activated")){

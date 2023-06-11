@@ -23,11 +23,15 @@ export default class App {
         this._loadFeed();
     }
 
-
+    /* Load the posts */
     async _loadFeed(){
         document.querySelector("#feed").textContent = "";
+
+        // API call
         let data = await apiRequest("GET", "/feed");
         let posts = data.posts;
+
+        // Order the posts based on filter
         if (this._filter.order === Order.LATEST){
             posts.sort((a, b) => b.time - a.time);
             posts.reverse();
@@ -36,6 +40,7 @@ export default class App {
             posts.sort((a, b) => ((b.likeCount + b.commentCount) - (a.likeCount + a.commentCount)));
         }
         
+        // Display posts
         this._posts = [];
         for (let postData of posts) {
             let elem = document.querySelector("#templatePost").cloneNode(true);
@@ -52,6 +57,9 @@ export default class App {
 
             document.querySelector("#feed").append(elem);
             this._posts.push(post);
+
+            // Update the like icon
+            post.updateLike();
         }
     }
 
@@ -60,10 +68,14 @@ export default class App {
         this._user = new User();
         await this._user.logIn();
         document.querySelector("#postForm").classList.remove("hidden");
+
+        // Update posts
         for (let post of this._posts){
             post.updateUser(this._user);
             await post.updateLike();
         }
+
+        // Hide login button
         this._guestLoginButton.classList.add("hidden");
         document.querySelector("#loginPrompt").classList.add("hidden");
     }
@@ -76,9 +88,9 @@ export default class App {
             header: header,
             body: body
         })
-        await this._loadFeed();
         this._postForm.querySelector("#postHeaderInput").value = "";
         this._postForm.querySelector("#postBodyInput").value = "";
+        await this._loadFeed();
     }
 
     async _onPostComment(event){
@@ -90,7 +102,7 @@ export default class App {
         })
         Post.updateComments(postId);
         document.querySelector("#commentInput").value = "";
-        this._loadFeed();
+        await this._loadFeed();
     }
 
 }

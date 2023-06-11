@@ -1,5 +1,6 @@
 import apiRequest from "./apirequest.js";
 
+/* A data model that represents a post. Also handles likes and comments */
 export default class Post {
     constructor(data, postElm, viewUser) {
         this.id = data.id;
@@ -10,9 +11,8 @@ export default class Post {
         this.commentCount = data.commentCount;
         this.post = postElm;   // DOM element
         this.user = viewUser;   // User object
-        this.comments = [];
 
-        this.ifLiked = false;
+        this.ifLiked = false;   // If the post is liked by the user
 
         this._onLike = this._onLike.bind(this);
         this._onComment = this._onComment.bind(this);
@@ -28,6 +28,7 @@ export default class Post {
     }
 
     async updateLike(){
+        // API call to find out if the user has liked the post
         if (this.user !== null){
             let likeData = await apiRequest("GET",  
                 "/like/" + this.user.id + "/" + this.id.toString()
@@ -35,6 +36,7 @@ export default class Post {
             this.ifLiked = likeData.ifLiked;
         }
 
+        // Update DOM to show liked heart
         if (this.ifLiked){
             this.post.querySelector("#emptyHeart").classList.add("hidden");
             this.post.querySelector("#fullHeart").classList.remove("hidden");
@@ -48,6 +50,7 @@ export default class Post {
             return;
         }
 
+        // API call to submit like and update DOM
         if (!this.ifLiked){
             await apiRequest("POST", "/like" ,{
                 userId: this.user.id,
@@ -67,9 +70,11 @@ export default class Post {
             return;
         }
 
+        // Reveal comment form
         document.querySelector("#commentPrompt").classList.add("hidden");
         document.querySelector("#commentForm").classList.remove("hidden");
 
+        // Add a copy of post on comment panel
         let postCopy = this.post.cloneNode(true);
         postCopy.id = this.id.toString();
         postCopy.removeChild(postCopy.querySelector("#reactButtons"));
@@ -79,9 +84,11 @@ export default class Post {
         Post.updateComments(this.id);
     }
 
+    /* Call to update the comments on teh comment panel */
     static async updateComments(postId){
         document.querySelector("#comments").textContent = "";
         
+        // API call to get comments and display 
         let data = await apiRequest("GET", "/comment/" + postId.toString());
         let comments = data.comments;
         for (let commentData of comments){
