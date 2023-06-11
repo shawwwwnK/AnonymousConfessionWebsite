@@ -92,6 +92,11 @@ let init_posts =
         ]
     }
 
+function getRandomInteger(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
 db = connect("anonymous_confession_website");
 db.dropDatabase();
@@ -99,8 +104,8 @@ db.users.insertOne({ id: "mchang"});
 db.users.insertOne({ id: "swe123"});
 db.posts.insertOne({ userId: "mchang", time: new Date(), header: "My Post!", body: "Welcome to the website" });
 
-var mchangPost = db.posts.findOne({ userId: "mchang" });
-var mchangPostId = mchangPost._id;
+let mchangPost = db.posts.findOne({ userId: "mchang" });
+let mchangPostId = mchangPost._id;
 
 db.comments.insertOne({
   postId: mchangPostId.toString(),
@@ -121,5 +126,13 @@ for (let post of init_posts.confessions){
         time: new Date(),
         header: post.header,
         body: post.body
-    })
+    });
+    let postId = db.posts.findOne({header: post.header})._id.toString();
+    for (let i=0; i < getRandomInteger(0, 10); i++){
+        db.likes.insertOne({
+            postId: postId,
+            userId: "",
+            time: new Date()
+        });
+    }
 }
